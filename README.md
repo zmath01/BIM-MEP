@@ -49,4 +49,4 @@ To export a report downloaded from the viewer, run `python scripts/export_ifc.py
 
 In **Settings → Pages**, select **GitHub Actions** as the source. Run the **Portfolio Pages** workflow. It tests the solver, builds a static bundle and deploys `dist/` without a backend. The same bundle is served by the local command above.
 
-The source site also supports branch deployment. Select **Deploy from a branch → `main` → `/docs`**. This option loads the pinned Three.js release from jsDelivr. The output of `npm run build` and the Actions deployment include those modules locally.
+The source site also supports branch deployment. Select **Deploy from a branch → `main` → `/docs`**. This option loads the pinned Three.js release and font from jsDelivr. The output of `npm run build` and the Actions deployment include those modules locally.

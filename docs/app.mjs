@@ -25,7 +25,7 @@ function plot(canvas, thermal) {
   const duration = series.at(-1).hour;
   const mapX = x => zone.x + x / duration * zone.width;
   const mapY = y => zone.y + (max - y) / (max - min) * zone.height;
-  ctx.font = '11px system-ui';
+  ctx.font = '11px Instrument Sans, system-ui';
   ctx.fillStyle = '#52645a';
   for (let i = 0; i <= 4; i++) {
     const temperature = min + (max - min) * i / 4;
@@ -107,6 +107,7 @@ try {
     plot($('chart'), thermal);
   };
   new ResizeObserver(() => { if (thermal) plot($('chart'), thermal); }).observe($('chart'));
+  document.fonts.ready.then(() => { if (thermal) plot($('chart'), thermal); });
   for (const input of document.querySelectorAll('.control input')) input.addEventListener('input', calculate);
   $('gain').addEventListener('input', updateThermal);
   $('step').addEventListener('input', updateThermal);
@@ -122,6 +123,7 @@ try {
   updateThermal();
   try {
     const { createViewer } = await import('./viewer.mjs');
+    await document.fonts.ready;
     viewer = createViewer($('scene'), model);
     viewer.update(report, selected);
     $('reset').addEventListener('click', () => viewer.reset());

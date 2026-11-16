@@ -50,7 +50,7 @@ export function createViewer(element, model) {
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, 256, 60);
-    ctx.font = 'bold 25px system-ui';
+    ctx.font = 'bold 25px Instrument Sans, system-ui';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#1d3c30';
