@@ -1,0 +1,16 @@
+layer,material,unit,modeled_quantity,scope
+Flat panel stock,"Structural plywood candidate, 18 mm in study",sheet,20,Optimized study stock for modeled rectangular skins only; final grade and thickness by design
+Wall skin,Plywood,m²,24.849,"Rectangular wall panels, net of modeled openings; included in flat stock"
+Gables,Plywood,m²,3.6,Both triangular gables; additional nonrectangular layout needed
+Floor deck,Plywood,m²,10.8,Included in flat stock; excludes finish and structural framing
+Roof deck,Plywood,m²,13.831,"Included in flat stock; no eaves, laps or waste included"
+Wall cavity,Illustrative plywood rib geometry (actual frame subject to structural design),objects,29,"Object count for visual review only; excludes framing stock, joints and load rating"
+Weathering,"Wall wrap, cavity battens, exterior cladding",m² net geometry,28.449,"Each wall layer starts from this net area; add laps, openings detailing and product allowances"
+Roof weathering,"Roof underlay, roofing, ridge and edge flashing",m² net geometry,13.831,"Roof surface proxy; select approved system and detail eaves, drainage and laps"
+Insulation,"Floor, walls, roof or ceiling assembly",m² area proxy,53.08,Total boundary-area proxy; calculate each assembly separately for local thermal and moisture requirements
+Glazing,Glazed window units,units,5,Gross modeled opening area 2.551 m²; confirm actual rough openings
+Entry,"Door and frame, seals and flashing",units,1,No door leaf modeled; accessibility and egress require review
+Water management,"Gutters, downpipes, roof drainage",TBD,,Design to roof and site conditions
+Structure and fixing,"Framing, straps, anchors, hold-downs and corrosion-compatible fasteners",TBD,,Connection and load-path design required
+Base and access,"Foundation, moisture separation, access steps and guards",TBD,,"Concept blocks shown; design for site, uplift and access"
+MEP and interiors,"Ventilation, lighting, wiring and plumbing as needed; lining and finishes",TBD,,Scope depends on intended use and services
