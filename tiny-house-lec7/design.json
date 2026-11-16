@@ -1,0 +1,19 @@
+{
+  "width_mm": 3000,
+  "depth_mm": 3600,
+  "floor_level_mm": 480,
+  "wall_height_mm": 2200,
+  "gable_rise_mm": 1200,
+  "panel_thickness_mm": 18,
+  "board_mm": [2440, 1220],
+  "board_edge_margin_mm": 10,
+  "part_gap_mm": 6,
+  "openings": [
+    {"wall": "south", "kind": "door", "u": 320, "v": 0, "w": 820, "h": 2000},
+    {"wall": "south", "kind": "window", "u": 1800, "v": 1050, "w": 600, "h": 650},
+    {"wall": "east", "kind": "window", "u": 850, "v": 1050, "w": 850, "h": 650},
+    {"wall": "east", "kind": "window", "u": 2250, "v": 1050, "w": 780, "h": 650},
+    {"wall": "west", "kind": "window", "u": 1400, "v": 1080, "w": 820, "h": 630},
+    {"wall": "north", "kind": "window", "u": 1000, "v": 1100, "w": 900, "h": 650}
+  ]
+}
