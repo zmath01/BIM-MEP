@@ -1,0 +1,28 @@
+{
+  "name": "Office West · Supply air",
+  "units": {"coordinates": "m", "flow": "m³/s", "pressure": "Pa", "power": "W"},
+  "root": "AHU",
+  "nodes": {
+    "AHU": [0, 2.65, 0], "J1": [4, 2.65, 0], "J2": [7, 2.65, 0],
+    "P1": [0, 2.65, -1.15], "P2": [4, 2.65, -1.15],
+    "OPEN": [4, 2.65, 2.3], "MEET": [7, 2.65, -2.2], "STUDIO": [7, 2.65, 2.3]
+  },
+  "terminals": {
+    "OPEN": {"name": "Open office", "flow": 0.27},
+    "MEET": {"name": "Meeting room", "flow": 0.17},
+    "STUDIO": {"name": "Studio", "flow": 0.21}
+  },
+  "downstream": [
+    {"id": "S02", "from": "J1", "to": "J2", "k": 0.25},
+    {"id": "S03", "from": "J1", "to": "OPEN", "k": 1.25},
+    {"id": "S04", "from": "J2", "to": "MEET", "k": 1.25},
+    {"id": "S05", "from": "J2", "to": "STUDIO", "k": 1.25}
+  ],
+  "routes": {
+    "direct": {"name": "Direct trunk", "segments": [{"id": "S01", "from": "AHU", "to": "J1", "k": 0.3}]},
+    "bypass": {"name": "Beam bypass", "segments": [{"id": "B01", "from": "AHU", "to": "P1", "k": 0.4}, {"id": "B02", "from": "P1", "to": "P2", "k": 0.5}, {"id": "B03", "from": "P2", "to": "J1", "k": 0.5}]}
+  },
+  "obstacles": [{"id": "BEAM-01", "min": [1.65, 2.35, -0.58], "max": [2.15, 3.1, 0.58]}],
+  "duct": {"stockDiameters": [0.225, 0.28, 0.355, 0.45], "density": 1.2, "viscosity": 0.000018, "roughness": 0.00009, "insulation": 0.035, "clearance": 0.1, "fanEfficiency": 0.62, "fixedPressure": 50},
+  "thermal": {"capacity": 1600000, "ua": 155, "ventilation": 0.17, "supplyTemperature": 15, "outdoorTemperature": 32, "initialTemperature": 23, "gain": 1950, "heatCapacityAir": 1006, "durationHours": 8}
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>MEP Coordination Lab · Office West</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <header class="top"><div class="shell mast"><strong>MEP <span>Coordination Lab</span></strong><a href="https://github.com/zmath01/BIM-MEP">Source on GitHub ↗</a></div></header>
+  <main class="shell">
+    <header class="intro"><p class="eyebrow">BUILDING SERVICES / DEMONSTRATION MODEL</p><h1>Office West</h1><p>Route a supply duct around a structural beam, size the network, and compare a zone’s thermal response.</p></header>
+    <p id="error" class="notice" role="alert" hidden></p>
+    <div class="workspace">
+      <section class="viewer panel" aria-labelledby="viewport-heading">
+        <header class="panel-head"><div><h2 id="viewport-heading">Supply air coordination</h2><p id="model-description">Three terminals · dimensions in metres</p></div><button id="reset" type="button" class="quiet">Reset view</button></header>
+        <div id="scene" role="img" aria-label="Interactive three-dimensional supply duct layout with a structural beam and three supply terminals" aria-describedby="scene-help"></div>
+        <footer class="viewer-foot"><div class="legend"><span><i class="dot duct"></i>Duct</span><span><i class="dot beam"></i>Beam</span><span><i class="dot clash"></i>Clash</span></div><span id="scene-help">Drag to orbit · scroll to zoom</span></footer>
+      </section>
+      <aside class="panel control" aria-labelledby="controls-heading">
+        <h2 id="controls-heading">Design inputs</h2>
+        <fieldset><legend>Trunk alignment</legend><div class="choice"><label><input type="radio" name="route" value="direct"><span>Direct</span></label><label><input type="radio" name="route" value="bypass" checked><span>Beam bypass</span></label></div></fieldset>
+        <label for="budget" class="range-title">Pressure budget <output id="budget-value">85 Pa</output></label><input id="budget" type="range" min="60" max="200" value="85" step="5">
+        <label for="velocity" class="range-title">Velocity limit <output id="velocity-value">6.0 m/s</output></label><input id="velocity" type="range" min="3" max="10" value="6" step="0.5">
+        <label class="switch"><input id="optimize" type="checkbox" checked> Find minimum sheet area</label>
+        <div id="status" class="notice" role="status">Calculating…</div>
+        <p class="case-note">Fixed terminal flows. Pressure includes a 50 Pa equipment allowance.</p>
+        <button id="download" class="download" type="button">Download design report ↓</button><a class="ifc-link" href="./data/office-west.ifc" download>Download default layout IFC ↓</a>
+      </aside>
+    </div>
+    <section class="metrics" aria-label="Design results" aria-live="polite">
+      <div class="metric"><span>Supply flow</span><strong id="airflow">—</strong><small>At design demand</small></div>
+      <div class="metric"><span>Critical pressure</span><strong id="pressure">—</strong><small id="critical">Critical terminal</small></div>
+      <div class="metric"><span>Estimated fan power</span><strong id="power">—</strong><small>At 62% efficiency</small></div>
+      <div class="metric"><span>Sheet area</span><strong id="area">—</strong><small>Excludes fittings</small></div>
+    </section>
+    <div class="analysis-grid">
+      <section class="panel analysis" aria-labelledby="schedule-heading">
+        <header><h2 id="schedule-heading">Duct schedule</h2><p id="schedule-note">Select a segment to highlight it in the model.</p></header>
+        <div class="table-wrap"><table><caption class="sr-only">Duct segment results with SI units</caption><thead><tr><th scope="col">Segment</th><th scope="col">Ø mm</th><th scope="col">L/s</th><th scope="col">m/s</th><th scope="col">Loss Pa</th></tr></thead><tbody id="schedule"></tbody></table></div>
+      </section>
+      <section class="panel analysis" aria-labelledby="thermal-heading">
+        <header><h2 id="thermal-heading">Meeting room warm-up</h2><p>One-zone heat balance · analytic solution and Backward Euler</p></header>
+        <div class="thermal-controls"><label for="gain" class="range-title">Heat gain <output id="gain-value">1,950 W</output></label><input id="gain" type="range" min="0" max="4000" value="1950" step="50"><label class="timestep" for="step">Time step <select id="step"><option value="5">5 min</option><option value="15">15 min</option><option value="30" selected>30 min</option><option value="60">60 min</option><option value="120">120 min</option></select></label></div>
+        <canvas id="chart" role="img" aria-label="Plot of exact and numerical meeting-room temperature over eight hours"></canvas>
+        <div class="legend"><span><i class="dot duct"></i>Analytic</span><span><i class="dot numeric"></i>Backward Euler</span></div><p id="thermal-summary" aria-live="polite"></p>
+      </section>
+    </div>
+    <footer class="page-foot">Synthetic concept model · SI units · <a href="https://github.com/zmath01/BIM-MEP/blob/main/engineering/METHODS.md">Methods and limitations ↗</a></footer>
+  </main>
+</body>
+</html>
